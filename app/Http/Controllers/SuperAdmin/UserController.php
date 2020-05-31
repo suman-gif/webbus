@@ -18,7 +18,8 @@ class UserController extends Controller
 
     public function show(User $user)
     {   
-        if(Auth::id()==1)
+        
+        if(Auth::user()->role->id==1)
            return view('superadmin.users.show',compact('user'));
         else
             abort(404);

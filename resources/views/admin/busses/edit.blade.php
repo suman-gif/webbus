@@ -108,18 +108,20 @@
                                 <div id="add_offday">                  
                                     <?php 
                                         $days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-                                        $flag =0;
-                                    $db_days = explode(",",$bus->off_day);
+                                        
+                                    $db_days = explode(", ",$bus->off_day);
                                     //print_r($db_days);
-                                        foreach($days as $day){
 
+                                    //array intersect was easier. found later :D
+                                        foreach($days as $day){
+                                            $flag =0;
                                             foreach ($db_days as $value) {
                                                 if($value == $day){
                                                     $flag = 1;
                                                 }
                                             }
                                     ?>
-                                            
+
                                       @if ($flag==1) 
                                         <div class="custom-control custom-checkbox">
                                           <input type="checkbox" name="off_day[]" class="custom-control-input @error('off_day[]') is-invalid @enderror" id="{{ $day }}"  value="{{ $day }}" checked>

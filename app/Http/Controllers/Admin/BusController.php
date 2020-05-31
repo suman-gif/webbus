@@ -63,10 +63,17 @@ class BusController extends Controller
         $data['description'] = $request['description'];
 
         $data['off_day'] ='';
-
+        
+       
         if ($request['off_day']) { 
+            $holiday_count = 0;
+            
             foreach ($request['off_day'] as $off_day) {
-                $data['off_day'] = $data['off_day'].$off_day.', ';
+                $holiday_count++;
+                if( $holiday_count > 1 ){
+                    $data['off_day'] .= ', '; 
+                }
+                $data['off_day'] = $data['off_day'].$off_day;
             }
         }
        
@@ -138,8 +145,14 @@ class BusController extends Controller
 
 
         if ($request['off_day']) { 
+            $holiday_count = 0;
+            
             foreach ($request['off_day'] as $off_day) {
-                $data['off_day'] = $data['off_day'].$off_day.', ';
+                $holiday_count++;
+                if( $holiday_count > 1 ){
+                    $data['off_day'] .= ', '; 
+                }
+                $data['off_day'] = $data['off_day'].$off_day;
             }
         }
 

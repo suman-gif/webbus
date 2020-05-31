@@ -17,7 +17,8 @@ class BusController extends Controller
 
     public function show(Bus $bus)
     {   
-        if(Auth::id()==1)
+
+        if(Auth::user()->role->id==1)
            return view('superadmin.busses.show',compact('bus'));
         else
             abort(404);

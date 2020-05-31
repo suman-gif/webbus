@@ -15,18 +15,18 @@ use App\Mail\TestMail;
 
 Route::get('/', function () {
     return view('welcome');
-   
+
 });
 
-Route::get('/new-login', function () {
-    return view('auth.new-login');
-   
-});
+// Route::get('/new-login', function () {
+//     return view('auth.new-login');
+
+// });
 
 Route::get('/email', function () {
 	Mail::to('test@test.com')->send(new TestMail());
     return new TestMail();
-   
+
 });
 
 //Auth::routes();
@@ -35,10 +35,12 @@ Auth::routes(['verify' => true]);
 Route::view('/contact','contact');
 
 
+//Route::resource('busses', 'BusController'); no need for index,create,store,show.....
+
 
 Route::group([ 'as'=>'admin.', 'prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>['auth','admin'] ],
 	function(){
-		
+
 			Route::get('/busses', 'BusController@index')->name('busses.index');
 			Route::get('/busses/create','BusController@create')->name('busses.create');
 			Route::post('/busses','BusController@store')->name('busses.store');
@@ -46,6 +48,7 @@ Route::group([ 'as'=>'admin.', 'prefix'=>'admin', 'namespace'=>'Admin', 'middlew
 			Route::get('/busses/{bus}/edit','BusController@edit');
 			Route::patch('/busses/{bus}','BusController@update');
 			Route::delete('/busses/{bus}','BusController@destroy');
+
 
 
 			Route::get('/holidays/{bus}', 'HolidayController@show');
@@ -58,18 +61,18 @@ Route::group([ 'as'=>'admin.', 'prefix'=>'admin', 'namespace'=>'Admin', 'middlew
 
 Route::group([ 'as'=>'superadmin.', 'prefix'=>'superadmin', 'namespace'=>'SuperAdmin', 'middleware'=>['auth','superadmin'] ],
 	function(){
-		
-			Route::get('/busses', 'BusController@index')->name('busses.index');			
+
+			Route::get('/busses', 'BusController@index')->name('busses.index');
 			Route::get('/busses/{bus}','BusController@show');
 			Route::delete('/busses/{bus}','BusController@reject');
 			Route::patch('/busses/{bus}','BusController@approve');
 
-			Route::get('/users', 'UserController@index')->name('users.index');			
+			Route::get('/users', 'UserController@index')->name('users.index');
 			Route::get('/users/{user}','UserController@show');
 			Route::delete('/users/{user}','UserController@set_user');
 			Route::patch('/users/{user}','UserController@set_admin');
 
-			Route::post('/busses/','BusController@mass_status')->name('busses.mass_status');			
+			Route::post('/busses/','BusController@mass_status')->name('busses.mass_status');
 			Route::post('/users/','UserController@mass_role')->name('users.mass_role');
 
 
