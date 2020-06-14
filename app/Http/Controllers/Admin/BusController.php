@@ -143,7 +143,6 @@ class BusController extends Controller
 
         $data['off_day'] ='';
 
-
         if ($request['off_day']) { 
             $holiday_count = 0;
             
@@ -155,6 +154,8 @@ class BusController extends Controller
                 $data['off_day'] = $data['off_day'].$off_day;
             }
         }
+
+       
 
         $bus->update($data);
 

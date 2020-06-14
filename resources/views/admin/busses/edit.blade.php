@@ -101,8 +101,7 @@
                             <div class="col-md-6">   
                                 
                                 @if ($bus->off_day)
-                                    <input type="text" class="form-control show_btn" value="{{ $bus->off_day }}" id="set_disable" name="off_day[]" readonly>
-                                       
+                                    <input type="text" class="form-control show_btn" value="{{ $bus->off_day }}" id="set_disable" readonly>
                                     <a class="btn btn-success show_btn" onclick="show_days();"> Add New? </a>
 
                                 <div id="add_offday">                  
@@ -142,10 +141,10 @@
 
                                 @endif
                                     @error('off_day[]')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                             </div>
                         </div>
 
