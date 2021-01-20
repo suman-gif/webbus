@@ -17,9 +17,24 @@ class SuperAdminTableSeeder extends Seeder
         	'name' => 'Super Admin',
         	'username' => 'superadmin',
         	'email' => 'superadmin@webbus.com',
-        	'password' => bcrypt('admin1'),
+        	'password' => bcrypt('admin'),
+            'address' => 'Dharan-8',
+            'city' => 'Dharan',
         	'phone' => 9810570523,
         	'district' => 'Sunsari',
+            'created_at' =>NOW()
+        ]);
+
+        DB::table('users')->insert([
+            'role_id' => 2,
+            'name' => 'Admin',
+            'username' => 'admin',
+            'email' => 'admin@webbus.com',
+            'password' => bcrypt('admin'),
+            'address' => 'Dharan-8',
+            'city' => 'Dharan',
+            'phone' => 9810570523,
+            'district' => 'Sunsari',
             'created_at' =>NOW()
         ]);
 

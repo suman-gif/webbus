@@ -27,7 +27,7 @@ class CreateBusesTable extends Migration
             $table->integer('price');
             $table->text('description')->nullable();
             $table->string('status')->default('pending');
-            $table->boolean('display')->default('true');
+            $table->boolean('display')->default(1);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
