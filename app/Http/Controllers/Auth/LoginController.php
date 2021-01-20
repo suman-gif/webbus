@@ -40,6 +40,13 @@ class LoginController extends Controller
     //     $this->middleware('guest')->except('logout');
     // }
 
+
+    public function showLoginForm()
+    {
+        return view('auth.new-login');
+    }
+
+
     public function __construct()
     {   
         if(Auth::check() && Auth::user()->role->id == 1 ){
