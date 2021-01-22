@@ -41,6 +41,9 @@ class LoginController extends Controller
     // }
 
 
+
+   
+
     public function showLoginForm()
     {
         return view('auth.new-login');
@@ -58,5 +61,10 @@ class LoginController extends Controller
         }
 
         $this->middleware('guest')->except('logout');
+    }
+
+    public function username()
+    {
+        return 'username';
     }
 }
