@@ -1,4 +1,4 @@
-@section('title','All Busses')
+@section('title','All Users')
 @extends('layouts.title')
 
 

@@ -1,4 +1,4 @@
-@section('title','Web Bus')
+@section('title','Home')
 @extends('layouts.app')
 
 @section('content')
@@ -80,7 +80,7 @@
 
 
         <div class="col-sm-4 mt-5 ml-5">
-            <h3>Why WEB BUS?</h3>
+            <h3>Why Yatri BUS?</h3>
 
            <div class="list-group-flush">
               <div class="list-group-item">

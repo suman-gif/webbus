@@ -23,11 +23,11 @@ Route::get('/', function () {
 
 // });
 
-Route::get('/email', function () {
-	Mail::to('test@test.com')->send(new TestMail());
-    return new TestMail();
+// Route::get('/email', function () {
+// 	Mail::to('test@test.com')->send(new TestMail());
+//     return new TestMail();
 
-});
+// });
 
 //Auth::routes();
 Auth::routes(['verify' => true]);
