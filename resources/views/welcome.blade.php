@@ -116,8 +116,6 @@
         <script type="text/javascript">
             $(document).ready(function () {
 
-
-
                 var mainInput = document.getElementById("nepali-datepicker");
 
                 today_date = NepaliFunctions.GetCurrentBsDate();

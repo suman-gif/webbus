@@ -2,17 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c6d7f12-7cec-4adf-b236-675117be98ab" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/phpunit.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/web-bus.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/web-bus.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/SuperAdminTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/SuperAdminTableSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/css/custom-style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/custom-style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/busses/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/busses/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/busses/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/busses/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/footer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/footer.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/head.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/head.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -177,5 +166,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
