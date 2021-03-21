@@ -58,7 +58,7 @@
                             </div>
                         </div>
 
-                       
+
                         @include('layouts.city_retrieve')
 
 					    <div class="form-group row">
@@ -66,9 +66,9 @@
 
                             <div class="col-md-6">
                                 <input id="start_time" type="time" class="form-control @error('start_time') is-invalid @enderror" name="start_time" required autocomplete="start_time"  value="{{ $bus->start_time }}">
-									
-								
-								
+
+
+
                                 @error('start_time')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -82,9 +82,9 @@
 
                             <div class="col-md-6">
                                 <input id="time_to_reach" type="time" class="form-control @error('time_to_reach') is-invalid @enderror" name="time_to_reach" required autocomplete="time_to_reach"  value="{{ $bus->time_to_reach }}">
-                                    
-                                
-                                
+
+
+
                                 @error('time_to_reach')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -97,17 +97,17 @@
 
                          <div class="form-group row">
                             <label for="off_day" class="col-md-4 col-form-label text-md-right">{{ __('Off Day') }}</label>
-    
-                            <div class="col-md-6">   
-                                
+
+                            <div class="col-md-6">
+
                                 @if ($bus->off_day)
                                     <input type="text" class="form-control show_btn" value="{{ $bus->off_day }}" id="set_disable" readonly>
                                     <a class="btn btn-success show_btn" onclick="show_days();"> Add New? </a>
 
-                                <div id="add_offday">                  
-                                    <?php 
+                                <div id="add_offday">
+                                    <?php
                                         $days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-                                        
+
                                     $db_days = explode(", ",$bus->off_day);
                                     //print_r($db_days);
 
@@ -121,23 +121,23 @@
                                             }
                                     ?>
 
-                                      @if ($flag==1) 
+                                      @if ($flag==1)
                                         <div class="custom-control custom-checkbox">
                                           <input type="checkbox" name="off_day[]" class="custom-control-input @error('off_day[]') is-invalid @enderror" id="{{ $day }}"  value="{{ $day }}" checked>
                                           <label class="custom-control-label" for="{{ $day }}">{{$day}}</label>
                                         </div>
-                                      @else       
+                                      @else
                                         <div class="custom-control custom-checkbox" >
                                             <input type="checkbox" name="off_day[]" class="custom-control-input @error('off_day[]') is-invalid @enderror" id="{{ $day }}" value="{{ $day }}">
-                                            <label class="custom-control-label" for="{{ $day }}">{{ $day }}</label>    
-                                        </div>   
-                                      @endif  
+                                            <label class="custom-control-label" for="{{ $day }}">{{ $day }}</label>
+                                        </div>
+                                      @endif
 
-                                    <?php } ?>    
+                                    <?php } ?>
                                 </div>
                                 @else
 
-                                    @include('layouts.days')  
+                                    @include('layouts.days')
 
                                 @endif
                                     @error('off_day[]')
@@ -154,9 +154,9 @@
 
                             <div class="col-md-6">
                                 <input id="seat_num" type="number" class="form-control @error('seat_num') is-invalid @enderror" name="seat_num" required autocomplete="seat_num"  value="{{ $bus->seat_num }}">
-                                    
-                                
-                                
+
+
+
                                 @error('seat_num')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -170,10 +170,10 @@
                             <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Description') }}</label>
 
                             <div class="col-md-6">
-                                    
+
                                 <textarea id="description"  class="form-control @error('description') is-invalid @enderror" name="description" autocomplete="description" rows="5"  >{{ $bus->description }}</textarea>
-                                
-                                
+
+
                                 @error('description')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -203,13 +203,13 @@
 @endsection
 
 <!-- jQuery -->
-<script type="text/javascript" src="{{ asset('public/assets/js/jquery.min.js') }}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <script>
     function from_to(){
         var from = $('#from_location').val();
         var to = $('#to_location').val();
-        
+
         if(from==to){
             alert('From and To location cannot be same.');
             console.log(from+'...'+to);

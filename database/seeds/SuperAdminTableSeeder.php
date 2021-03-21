@@ -38,6 +38,19 @@ class SuperAdminTableSeeder extends Seeder
             'created_at' =>NOW()
         ]);
 
-     
+        DB::table('users')->insert([
+            'role_id' => 3,
+            'name' => 'Customer',
+            'username' => 'customer',
+            'email' => 'customer@webbus.com',
+            'password' => bcrypt('customer'),
+            'address' => 'Dharan-8',
+            'city' => 'Dharan',
+            'phone' => 9810570523,
+            'district' => 'Sunsari',
+            'created_at' =>NOW()
+        ]);
+
+
     }
 }

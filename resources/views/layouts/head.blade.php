@@ -9,30 +9,30 @@
 
     <title>@yield('title') - Yatri Bus</title>
 
-    
 
-  <link rel="icon" href="{{ asset('/favicon.ico')}}" type="image/x-icon">
+    <!--select2 css -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet"/>
+
+    <link rel="icon" href="{{ asset('/favicon.ico')}}" type="image/x-icon">
 
 
-
-      <!-- NEPALI CALENDAR LINKS -->
+    <!-- NEPALI CALENDAR LINKS -->
     <link href="{{ asset('/assets/css/nepali.datepicker.v3.min.css') }}" rel="stylesheet" type="text/css"/>
-   
-     <!-- MDB icon -->
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
-  <!-- Google Fonts Roboto -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="{{ asset('/assets/css/bootstrap.min.css') }}">
-  <!-- Material Design Bootstrap -->
-  <link rel="stylesheet" href="{{ asset('/assets/css/mdb.min.css') }}">
 
-  
+    <!-- MDB icon -->
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{{ asset('/assets/css/bootstrap.min.css') }}">
+    <!-- Material Design Bootstrap -->
+    <link rel="stylesheet" href="{{ asset('/assets/css/mdb.min.css') }}">
+
+
     <!-- Styles -->
     <link href="{{ asset('/assets/css/custom-style.css') }}" rel="stylesheet">
 </head>
 <body>
 
-        
-        
+

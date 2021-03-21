@@ -29,17 +29,17 @@
         <ul class="list-unstyled">
           <li>
             <a href="#!" class="text-white">Link 1</a>
-          </li> 
+          </li>
           <li>
             <a href="#!" class="text-white">Link 2</a>
-          </li> 
+          </li>
           <li>
             <a href="#!" class="text-white">Link 3</a>
-          </li> 
+          </li>
           <li>
             <a href="#!" class="text-white">Link 4</a>
           </li>
-         
+
         </ul>
 
       </div>
@@ -65,7 +65,7 @@
           <a class="gplus-ic text-white text-decoration-none" href="#" >
             <i class="fab fa-google fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
           </a>
-          
+
         </div>
 
       </div>
@@ -86,23 +86,20 @@
 </footer>
 <!-- Footer -->
 
+<script src="{{ asset('/assets/js/nepali.datepicker.v3.min.js') }}" type="text/javascript"></script>
 
-
-</body>
-
- <script src="{{ asset('/assets/js/nepali.datepicker.v3.min.js') }}" type="text/javascript"></script>
-
-
-<!-- jQuery -->
-<script type="text/javascript" src="{{ asset('/assets/js/jquery.min.js') }}"></script>
 <!-- Bootstrap tooltips -->
 <script type="text/javascript" src="{{ asset('/assets/js/popper.min.js') }}"></script>
 <!-- Bootstrap core JavaScript -->
 <script type="text/javascript" src="{{ asset('/assets/js/bootstrap.min.js') }}"></script>
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="{{ asset('/assets/js/mdb.min.js') }}"></script>
-<!-- Your custom scripts (optional) -->
-<script type="text/javascript"></script>
+
+<!-- Select2 JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+
+</body>
 
 
 
