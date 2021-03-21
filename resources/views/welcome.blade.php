@@ -126,7 +126,6 @@
                     }
                 });
 
-
                 function from_to() {
                     var from = $('#from_location').val();
                     var to = $('#to_location').val();
