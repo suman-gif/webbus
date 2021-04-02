@@ -32,7 +32,7 @@
 
                 <tr>
                     <th scope="row"> {{$bus->id}} </th>
-                    <td><a href="busses/{{$bus->id}}" class="text-info font-weight-bold">{{$bus->name}}</a></td>
+                    <td class="font-weight-bold text-primary"> {{$bus->name}} </td>
                     <td> {{$bus->reg_num}} </td>
                     <td class="text-capitalize"> {{$bus->from_location}} </td>
                     <td class="text-capitalize"> {{$bus->to_location}} </td>
