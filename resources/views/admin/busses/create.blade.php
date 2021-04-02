@@ -135,9 +135,13 @@
                                         class="required"> *</span></label>
 
                                 <div class="col-md-6">
-                                    <input id="seat_num" type="number"
-                                           class="form-control @error('seat_num') is-invalid @enderror" name="seat_num"
-                                           required autocomplete="seat_num" value="{{ old('seat_num') }}">
+                                    <select name="seat_num" id="seat_num" class="form-control @error('seat_num') is-invalid @enderror" required>
+                                        <option value="">--Select Seat No.--</option>
+                                        <option value="35">35</option>
+                                        <option value="39">39</option>
+                                        <option value="43">43</option>
+                                        <option value="47">47</option>
+                                    </select>
 
 
                                     @error('seat_num')
@@ -212,10 +216,6 @@
         $("#from_location").select2();
         $("#to_location").select2();
 
-
-        $('#start_time').timepicker({
-            showInputs: false
-        });
     });
 
 </script>

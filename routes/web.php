@@ -100,3 +100,6 @@ Route::post('/available-bus','BusListController@index')->name('available_bus');
 // Route::fallback(function () {
 //     return abort('404');
 // });
+
+Route::get('/get_seat_layout/{seat_num}','SeatController@partial_seat_layout');
+

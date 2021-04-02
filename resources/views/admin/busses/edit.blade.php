@@ -153,8 +153,13 @@
                             <label for="seat_num" class="col-md-4 col-form-label text-md-right">{{ __('No. of Seats') }}<span class="required"> *</span></label>
 
                             <div class="col-md-6">
-                                <input id="seat_num" type="number" class="form-control @error('seat_num') is-invalid @enderror" name="seat_num" required autocomplete="seat_num"  value="{{ $bus->seat_num }}">
-
+                                <select name="seat_num" id="seat_num" class="form-control @error('seat_num') is-invalid @enderror" required>
+                                    <option value="{{ $bus->seat_num }}">{{ $bus->seat_num }}</option>
+                                    <option value="" disabled>----------------------------------------------------</option>                                    <option value="35">35</option>
+                                    <option value="39">39</option>
+                                    <option value="43">43</option>
+                                    <option value="47">47</option>
+                                </select>
 
 
                                 @error('seat_num')
@@ -206,25 +211,29 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <script>
-    function from_to(){
-        var from = $('#from_location').val();
-        var to = $('#to_location').val();
+    $(document).ready(function () {
+        function from_to() {
+            var from = $('#from_location').val();
+            var to = $('#to_location').val();
 
-        if(from==to){
-            alert('From and To location cannot be same.');
-            console.log(from+'...'+to);
-            return false;
-        }else{
-            return true;
+            if (from == to) {
+                alert('From and To location cannot be same.');
+                console.log(from + '...' + to);
+                return false;
+            } else {
+                return true;
+            }
+
+        };
+
+        function show_days() {
+            $('#add_offday').show();
+            $('.show_btn').hide();
+            $('#set_disable').prop('disabled', true);
         }
 
-    };
-
-    function show_days(){
-        $('#add_offday').show();
-        $('.show_btn').hide();
-        $('#set_disable').prop('disabled',true);
-    }
-
-
+        // Initialize select2
+        $("#from_location").select2();
+        $("#to_location").select2();
+    });
 </script>
