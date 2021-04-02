@@ -12,6 +12,10 @@ class SeatController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function partial_seat_layout($seat_num){
+        return view('layouts.seat_layout', ['seat_num' => $seat_num]);
+    }
     public function index()
     {
         //

@@ -19,7 +19,7 @@
 
     <!-- Then put toasts within -->
     <div class="toast mt-2 mr-1 border-0 d-flex bg-danger" role="alert" aria-live="assertive" aria-atomic="true" data-delay="4000">
-      
+
       <div class="toast-body bg-danger text-white">
         {{ $error }}
       </div>
@@ -34,14 +34,14 @@
 
 @endif
 
-    
 
-  
+
+
   </div>
 </div>
-		
+
 	<div class="login-body">
-		<div class="logo"> 
+		<div class="logo">
 			<img src="{{ asset('/assets/images/logo.png') }}" alt="Web Bus Login" title="Web Bus Logo" width="100px" class="pt-3">
 
 
@@ -52,7 +52,7 @@
 							<i class="fa fa-user"></i>
 							<input id="username" type="text" class="form-control pl-4" name="username" value="{{ old('username') }}" autocomplete="username" autofocus placeholder="Username">
 
-                            
+
 
 						</div>
 
@@ -61,7 +61,7 @@
 							<i class="fa fa-lock"></i>
                                 <input id="password" type="password" class="form-control pl-4" name="password" autocomplete="current-password" placeholder="Password">
 
-                              
+
                         </div>
 
 						<div class="form-group row pl-4">
@@ -79,9 +79,9 @@
                                 {{ __('Login') }}
                             </button>
 
-                         
+
                         </div>
-                        
+
                         <div class="form-group">
                         	   @if (Route::has('password.request'))
                                     <a class="btn btn-link text-white" href="{{ route('password.request') }}">
@@ -89,7 +89,7 @@
                                     </a>
                                 @endif
                         </div>
-					
+
 
 						<div class="modal-footer">
 							Don't have account? <a href="{{ route('register') }}" class="text-primary"> Sign up here</a>
@@ -104,10 +104,9 @@
 			</div>
 		</div>
 	</div>
-	
-	
 
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
