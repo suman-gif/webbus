@@ -113,3 +113,12 @@
 .select2-container--default .select2-search--dropdown .select2-search__field:focus{
     outline-offset: 0px;
 }
+
+.d-flex.justify-content-center.spinner-wrapper {
+    background: #fff;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+    align-items: center;
+}

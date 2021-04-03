@@ -101,5 +101,5 @@ Route::post('/available-bus','BusListController@index')->name('available_bus');
 //     return abort('404');
 // });
 
-Route::get('/get_seat_layout/{seat_num}','SeatController@partial_seat_layout');
+Route::get('/get_seat_layout/{bus}','SeatController@partial_seat_layout');
 

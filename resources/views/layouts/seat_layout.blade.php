@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="{{ asset('/assets/css/jquery.seat-charts.css') }}">
 
+
 <div class="seat-container">
     <div id="seat-map">
         <div class="front-indicator">Front</div>
@@ -15,10 +16,14 @@
         <div id="legend"></div>
     </div>
 </div>
+
 <script src="{{ asset('/assets/js/jquery.seat-charts.min.js') }}"></script>
 
 <script>
-    seatLayout({{$seat_num}}, 50);
+
+
+    seatLayout({{$bus->seat_num}}, {{$bus->price}});
+
 
     function seatLayout(bus_seat_no, bus_price) {
 

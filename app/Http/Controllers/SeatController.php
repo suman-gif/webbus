@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Bus;
 use App\Seat;
 use Illuminate\Http\Request;
 
@@ -13,8 +15,9 @@ class SeatController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function partial_seat_layout($seat_num){
-        return view('layouts.seat_layout', ['seat_num' => $seat_num]);
+    public function partial_seat_layout(Bus $bus){
+        return view('layouts.seat_layout',compact('bus'));
+
     }
     public function index()
     {
