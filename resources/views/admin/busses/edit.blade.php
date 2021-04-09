@@ -217,6 +217,7 @@
         $('.show_btn').hide();
         $('#set_disable').prop('disabled', true);
     }
+    $(document).ready(function () {
 
         $('#edit_bus_btn').on('click',function(){
             var from = $('#select2-from_location-container').html();
@@ -233,4 +234,5 @@
         // Initialize select2
         $("#from_location").select2();
         $("#to_location").select2();
+    });
 </script>
