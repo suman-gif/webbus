@@ -11,7 +11,7 @@
                 <div class="card-header">{{ __('Bus Details') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" onsubmit="return from_to();" action="{{ url('admin/busses') }}/{{$bus->id}}">
+                    <form method="POST" action="{{ url('admin/busses') }}/{{$bus->id}}">
                         @method('Patch')
                         @csrf
 
@@ -189,7 +189,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary" id="edit_bus_btn">
                                     {{ __('Update Bus') }}
                                 </button>
 
@@ -212,10 +212,9 @@
 
 <script>
     $(document).ready(function () {
-        function from_to() {
-            var from = $('#from_location').val();
-            var to = $('#to_location').val();
-
+        $('#edit_bus_btn').on('click',function(){
+            var from = $('#select2-from_location-container').html();
+            var to = $('#select2-to_location-container').html();
             if (from == to) {
                 alert('From and To location cannot be same.');
                 console.log(from + '...' + to);
@@ -223,8 +222,7 @@
             } else {
                 return true;
             }
-
-        };
+        });
 
         function show_days() {
             $('#add_offday').show();

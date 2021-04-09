@@ -34,7 +34,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <!-- Default form login -->
-                <form class="border border-light p-5" onsubmit="return from_to();" action="{{ route('available_bus') }}"
+                <form class="border border-light p-5" action="{{ route('available_bus') }}"
                       method="post">
 
                     {{ csrf_field() }}
@@ -67,7 +67,7 @@
                     <div class="form-group row mb-0">
                         <div class="col-md-6">
                             <!-- Sign in button -->
-                            <button class="btn btn-info btn-block text-center" type="submit">Search</button>
+                            <button class="btn btn-info btn-block text-center" id="search_btn" type="submit">Search</button>
                         </div>
                     </div>
 
@@ -122,21 +122,7 @@
                         $('#travel_day').val(day_extract)
                     }
                 });
-
-                function from_to() {
-                    var from = $('#from_location').val();
-                    var to = $('#to_location').val();
-
-                    if (from == to) {
-                        alert('From and To location cannot be same.');
-                        console.log(from + '...' + to);
-                        return false;
-                    } else {
-                        return true;
-                    }
-
-                };
-
+                
 
                 function day_extract() {
                     var Bsdate = document.getElementById('nepali-datepicker').value;
@@ -156,6 +142,19 @@
                 $("#to_location").select2();
 
 
+            });
+
+
+            $('#search_btn').on('click',function(){
+                var from = $('#select2-from_location-container').html();
+                var to = $('#select2-to_location-container').html();
+                if (from == to) {
+                    alert('From and To location cannot be same.');
+                    console.log(from + '...' + to);
+                    return false;
+                } else {
+                    return true;
+                }
             });
 
         </script>

@@ -11,8 +11,15 @@
         <ul id="selected-seats">
         </ul>
         Total: <b>Rs. <span id="total">0</span></b> <br><br>
-        <button class="btn-sm btn-outline-green">Checkout &raquo;</button>
-        <br>
+        <form method="POST" onsubmit="return checkSeatEmpty();" action="{{ url('checkout') }}">
+            @csrf
+            <input type="hidden" id="selected_seats_id" name="selected_seats_id">
+            <input type="hidden" id="selected_seats_num" name="selected_seats_num">
+            <input type="hidden" id="booked_date" name="booked_date">
+            <input type="hidden" id="total_price" name="total_price">
+            <input type="hidden" name="bus" value="{{$bus->id}}">
+            <input type="submit" class="btn-sm btn-outline-green" value="Checkout">
+        </form>
         <div id="legend"></div>
     </div>
 </div>
@@ -20,19 +27,61 @@
 <script src="{{ asset('/assets/js/jquery.seat-charts.min.js') }}"></script>
 
 <script>
+   var selected_seats_id = [];
+   var selected_seats_num = [];
+
+   seatLayout();
 
 
-    seatLayout({{$bus->seat_num}}, {{$bus->price}});
-
-
-    function seatLayout(bus_seat_no, bus_price) {
+    function seatLayout() {
 
         var firstSeatLabel = 1;
-        var price = bus_price;
-        var bus_seat_no = bus_seat_no;
+        $total_price = 0;
 
         var seat_35 = [
             '___aa',
+            'aa_aa',
+            'aa_aa',
+            'aa_aa',
+            'aa_aa',
+            'aa_aa',
+            'aa_aa',
+            'aa_aa',
+            'aaaaa',
+        ];
+
+        var seat_39 = [
+            '___aa',
+            'aa_aa',
+            'aa_aa',
+            'aa_aa',
+            'aa_aa',
+            'aa_aa',
+            'aa_aa',
+            'aa_aa',
+            'aa_aa',
+            'aaaaa',
+        ];
+
+        var seat_43 = [
+            '___aa',
+            'aa_aa',
+            'aa_aa',
+            'aa_aa',
+            'aa_aa',
+            'aa_aa',
+            'aa_aa',
+            'aa_aa',
+            'aa_aa',
+            'aa_aa',
+            'aaaaa',
+        ];
+
+        var seat_47 = [
+            '___aa',
+            'aa_aa',
+            'aa_aa',
+            'aa_aa',
             'aa_aa',
             'aa_aa',
             'aa_aa',
@@ -47,10 +96,10 @@
             $counter = $('#counter'),
             $total = $('#total'),
             sc = $('#seat-map').seatCharts({
-                map: seat_35,
+                map: seat_{{$bus->seat_num}},
                 seats: {
                     a: {
-                        price: bus_price,
+                        price: {{$bus->price}},
                         classes: 'available-class', //your custom CSS class
                         category: 'Available Seats'
                     }
@@ -77,7 +126,6 @@
                             .attr('id', 'cart-item-' + this.settings.id)
                             .data('seatId', this.settings.id)
                             .appendTo($cart);
-
                         /*
                          * Lets update the counter and total
                          *
@@ -86,9 +134,14 @@
                          */
                         $counter.text(sc.find('selected').length + 1);
                         $total.text(recalculateTotal(sc) + this.data().price);
+                        total_price = $total.text();
+                        selected_seats_id.push(this.settings.id);
+                        selected_seats_num.push(this.settings.label);
 
                         return 'selected';
+
                     } else if (this.status() == 'selected') {
+
                         //update the counter
                         $counter.text(sc.find('selected').length - 1);
                         //and total
@@ -98,7 +151,13 @@
                         $('#cart-item-' + this.settings.id).remove();
 
                         //seat has been vacated
+
+                        selected_seats_id.splice(selected_seats_id.indexOf(this.settings.id), 1);
+                        selected_seats_num.splice(selected_seats_num.indexOf(this.settings.label), 1);
                         return 'available';
+
+
+
                     } else if (this.status() == 'unavailable') {
                         //seat has been already booked
                         return 'unavailable';
@@ -106,6 +165,7 @@
                         return this.style();
                     }
                 }
+
             });
 
         //this will handle "[cancel]" link clicks
@@ -126,12 +186,26 @@
             sc.find('selected').each(function () {
                 total += this.data().price;
             });
-
             return total;
         }
     }
 
 
+   function checkSeatEmpty() {
+        if(selected_seats_id.length==0){
+            alert("Please select atleast one seat");
+            return false;
+
+        }else{
+            var sorted_seat_num = selected_seats_num.sort(function(a, b){return a-b});
+            var sorted_seat_id = selected_seats_id.sort(function(a, b){return a-b});
+
+            $('#selected_seats_id').val(sorted_seat_id.join(', '));
+            $('#selected_seats_num').val(sorted_seat_num.join(', '));
+            $('#booked_date').val(travel_date);
+            $('#total_price').val(total_price);
+            return true;
+        }
+
+   }
 </script>
-</body>
-</html>

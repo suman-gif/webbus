@@ -6,87 +6,58 @@ namespace App\Http\Controllers;
 use App\Bus;
 use App\Seat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class SeatController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
 
-    public function partial_seat_layout(Bus $bus){
-        return view('layouts.seat_layout',compact('bus'));
 
-    }
-    public function index()
+    public function partial_seat_layout(Bus $bus)
     {
-        //
+        return view('layouts.seat_layout', compact('bus'));
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function checkout(Request $request)
     {
-        //
+        $bus = Bus::findOrFail($request->bus);
+
+        return view('booking.checkout', (
+            [
+                'request' => $request,
+                'bus' => $bus
+            ]
+        ));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function paymentPost(Request $request)
     {
-        //
+        $selected_seat_info = json_decode($request->all_seat_info, TRUE);
+
+        if(Auth::check()){
+            return view('booking.payment', compact('selected_seat_info'));
+        }else{
+            Session::put('bus_checkout_info', $selected_seat_info);
+            return Redirect::route('login')->with('error_message', 'Please Login before making payment.');
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Seat  $seat
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Seat $seat)
+    public function paymentGet(Request $request)
     {
-        //
+        if (Session::has('bus_checkout_info')) {
+            $selected_seat_info = Session::get('bus_checkout_info');
+
+            if (Auth::check()) {
+                return view('booking.payment', compact('selected_seat_info'));
+            } else {
+                abort(404);
+            }
+        }else{
+            return redirect('/');
+        }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Seat  $seat
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Seat $seat)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Seat  $seat
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Seat $seat)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Seat  $seat
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Seat $seat)
-    {
-        //
-    }
 }

@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,6 +32,10 @@ class RegisterController extends Controller
      *
      * @var string
      */
+//    protected $redirectTo;
+    /**
+     * @var string
+     */
     protected $redirectTo;
 
     /**
@@ -39,9 +45,6 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        
-        $this->redirectTo = route('profile');
-        
         $this->middleware('guest');
     }
 
@@ -58,7 +61,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'username' => ['required', 'string', 'min:5', 'max:255', 'unique:users','alpha_dash'],
             'password' => ['required', 'string', 'min:5', 'confirmed'],
-            'phone' => ['required', 'numeric', 'digits:10',],
+            'phone' => ['required', 'numeric'],
             'address' => ['required', 'string'],
             'city' => ['required', 'string'],
             'district' => ['required', 'string'],
@@ -83,5 +86,14 @@ class RegisterController extends Controller
             'city' => $data['city'],
             'district' => $data['district'],
         ]);
+    }
+
+    protected function redirectTo()
+    {
+        if (Session::has('bus_checkout_info')) {
+            return route('payment');
+        }else{
+            return redirect()->route('profile');
+        }
     }
 }

@@ -4,7 +4,6 @@
 @section('content')
 <!-- Material form contact -->
 <div class="card">
-
     <h5 class="card-header info-color white-text text-center py-4">
         <strong>Contact us</strong>
     </h5>
@@ -46,7 +45,7 @@
                             <label for="message" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
-                              
+
 
                                <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" placeholder="Message" name="message" value="{{ old('message') }} required" ></textarea>
 
@@ -57,7 +56,7 @@
                                 @enderror
                             </div>
                         </div>
-						
+
 						<div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
 								<input type="submit" value="Send Message" class="btn btn-success">

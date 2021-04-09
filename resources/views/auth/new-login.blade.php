@@ -31,6 +31,19 @@
     </div>
 
 @endforeach
+@elseif (session('error_message'))
+    <!-- Then put toasts within -->
+        <div class="toast mt-2 mr-1 border-0 d-flex bg-danger" role="alert" aria-live="assertive" aria-atomic="true" data-delay="4000">
+
+            <div class="toast-body bg-danger text-white">
+                {{ session('error_message') }}
+            </div>
+            <div class="toast-header bg-danger">
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
 
 @endif
 
