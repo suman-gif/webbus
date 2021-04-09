@@ -211,7 +211,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <script>
-    $(document).ready(function () {
+
+    function show_days() {
+        $('#add_offday').show();
+        $('.show_btn').hide();
+        $('#set_disable').prop('disabled', true);
+    }
+
         $('#edit_bus_btn').on('click',function(){
             var from = $('#select2-from_location-container').html();
             var to = $('#select2-to_location-container').html();
@@ -224,14 +230,7 @@
             }
         });
 
-        function show_days() {
-            $('#add_offday').show();
-            $('.show_btn').hide();
-            $('#set_disable').prop('disabled', true);
-        }
-
         // Initialize select2
         $("#from_location").select2();
         $("#to_location").select2();
-    });
 </script>
