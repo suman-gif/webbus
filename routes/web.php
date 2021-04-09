@@ -12,6 +12,7 @@
 */
 
 use App\Mail\TestMail;
+use Illuminate\Support\Facades\Session;
 
 Route::get('/', function () {
     return view('welcome');
@@ -32,7 +33,7 @@ Route::get('/', function () {
 //Auth::routes();
 Auth::routes(['verify' => true]);
 
-Route::view('/contact','contact');
+Route::view('/contact','contact')->name('contact');
 
 
 //Route::resource('busses', 'BusController'); no need for index,create,store,show.....
@@ -96,6 +97,10 @@ Route::get('/profile/{user}/email','ProfileController@edit_email');
 Route::patch('/email/{user}','ProfileController@update_email');
 
 Route::post('/available-bus','BusListController@index')->name('available_bus');
+Route::get('/available-bus', function() {
+    abort(404);
+});
+
 
 // Route::fallback(function () {
 //     return abort('404');
@@ -103,3 +108,18 @@ Route::post('/available-bus','BusListController@index')->name('available_bus');
 
 Route::get('/get_seat_layout/{bus}','SeatController@partial_seat_layout');
 
+Route::post('/checkout', 'SeatController@checkout');
+Route::get('/checkout', function() {
+    abort(404);
+});
+Route::post('/payment', 'SeatController@paymentPost');
+
+//Route::get('/payment', 'SeatController@payment')->middleware('auth');
+
+Route::get('/payment', 'SeatController@paymentGet')->name('payment');
+
+
+Route::get('/check-session', function () {
+    if (Session::has('bus_checkout_info')) {
+        dd("Checkout session set");
+    }});

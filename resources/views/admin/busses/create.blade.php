@@ -11,7 +11,7 @@
                     <div class="card-header">{{ __('Bus Details') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" onsubmit="return from_to();" action="{{ route('admin.busses.store') }}">
+                        <form method="POST" action="{{ route('admin.busses.store') }}">
                             @csrf
 
                             <div class="form-group row">
@@ -175,7 +175,7 @@
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="submit" class="btn btn-primary" id="add_bus_btn">
                                         {{ __('Add Bus') }}
                                     </button>
 
@@ -198,10 +198,9 @@
     <script type="text/javascript">
     $(document).ready(function () {
 
-        function from_to() {
-            var from = $('#from_location').val();
-            var to = $('#to_location').val();
-
+        $('#add_bus_btn').on('click',function(){
+            var from = $('#select2-from_location-container').html();
+            var to = $('#select2-to_location-container').html();
             if (from == to) {
                 alert('From and To location cannot be same.');
                 console.log(from + '...' + to);
@@ -209,8 +208,7 @@
             } else {
                 return true;
             }
-
-        };
+        });
 
         // Initialize select2
         $("#from_location").select2();

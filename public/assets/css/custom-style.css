@@ -122,3 +122,8 @@
     z-index: 1;
     align-items: center;
 }
+
+.no-outline, .no-outline:focus{
+    outline: 0;
+    cursor: auto;
+}

@@ -4,10 +4,10 @@
     <div class="col-md-6">
 		   <select name="from_location" id="from_location" class="form-control @error('from_location') is-invalid @enderror" required autocomplete="from_location" >
               <option value="">--Select Location--</option>
-              <option value="dharan">Dharan</option>
-              <option value="itahari">Itahari</option>
-              <option value="biratnagar">Biratnagar</option>
-              <option value="damak">Damak</option>
+              <option value="Dharan">Dharan</option>
+              <option value="Itahari">Itahari</option>
+              <option value="Biratnagar">Biratnagar</option>
+              <option value="Damak">Damak</option>
             </select>
 
 
@@ -25,10 +25,10 @@
     <div class="col-md-6">
 		   <select name="to_location" id="to_location" class="form-control @error('to_location') is-invalid @enderror" required autocomplete="to_location">
               <option value="">--Select Location--</option>
-              <option value="dharan">Dharan</option>
-              <option value="itahari">Itahari</option>
-              <option value="biratnagar">Biratnagar</option>
-              <option value="damak">Damak</option>
+              <option value="Dharan">Dharan</option>
+              <option value="Itahari">Itahari</option>
+              <option value="Biratnagar">Biratnagar</option>
+              <option value="Damak">Damak</option>
             </select>
 
 

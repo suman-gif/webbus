@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class ProfileController extends Controller
 {
@@ -18,12 +19,15 @@ class ProfileController extends Controller
 
     public function index(){
     	$profile = Auth::user();
-    	
+
     	return view('profile.index',compact('profile'));
     }
 
     public function edit(User $user)
     {
+        if(Session::has('contact_visited')){
+            dd("has");
+        }
     	if(Auth::user()==$user)
         	return view('profile.edit_profile',compact('user'));
         else
@@ -34,7 +38,7 @@ class ProfileController extends Controller
     {
         $data = request()->validate([
             'name' => ['required', 'string', 'max:255'],
-            'phone' => ['required', 'numeric', 'digits:10',],
+            'phone' => ['required', 'numeric'],
             'address' => ['required', 'string'],
             'city' => ['required', 'string'],
             'district' => ['required', 'string'],
@@ -51,7 +55,7 @@ class ProfileController extends Controller
         	return view('profile.change_password',compact('user'));
         else
         	abort('404');
-        
+
     }
 
     public function update_password(Request $request, User $user)
@@ -59,14 +63,14 @@ class ProfileController extends Controller
         $data = request()->validate([
             'password' => ['required', 'string', 'min:5', 'confirmed'],
             'old_password' => ['required', 'string','min:5']
-        ]); 
+        ]);
 
 
         $hashedpassword = Auth::user()->password;
         $id= Auth::id();
 
         if (Hash::check($request->old_password,$hashedpassword)){
-            
+
             $user->password = Hash::make($request->password);
             $user->save();
             Auth::logout();
@@ -78,7 +82,7 @@ class ProfileController extends Controller
         }
 
 
-        
+
         $user->update($data);
 
         return redirect('profile')->with('success_msg','Profile successfully updated.');
@@ -91,16 +95,16 @@ class ProfileController extends Controller
             return view('profile.edit_email',compact('user'));
         else
             abort('404');
-        
+
     }
-    
+
 
     public function update_email(Request $request, User $user)
     {
         $data = request()->validate([
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users']
         ]);
-        
+
         $user->email_verified_at = NULL;
         $user->update($data);
 

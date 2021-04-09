@@ -34,8 +34,8 @@
                     <th scope="row"> {{$bus->id}} </th>
                     <td class="font-weight-bold text-danger"> {{$bus->name}} </td>
                     <td> {{$bus->reg_num}} </td>
-                    <td class="text-capitalize"> {{$bus->from_location}} </td>
-                    <td class="text-capitalize"> {{$bus->to_location}} </td>
+                    <td> {{$bus->from_location}} </td>
+                    <td> {{$bus->to_location}} </td>
                     <td> {{$bus->start_time}} </td>
                     <td> {{$bus->time_to_reach}} </td>
                     <td class="text-success font-weight-bold text-center"> {{$bus->price}} </td>
@@ -87,6 +87,8 @@
 
 
     <script type="text/javascript">
+
+        var travel_date = $('#travel_date').html();
         function load_seat_layout(bus)
         {
             $('#modal-body').load('/get_seat_layout/'+bus);
