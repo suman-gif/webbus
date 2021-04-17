@@ -1,4 +1,4 @@
-@section('title','Bus Report of 'git )
+@section('title','Bus Report of ')
 @extends('layouts.title')
 
 @section('content')

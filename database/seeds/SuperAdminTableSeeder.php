@@ -22,7 +22,8 @@ class SuperAdminTableSeeder extends Seeder
             'city' => 'Dharan',
         	'phone' => 9810570523,
         	'district' => 'Sunsari',
-            'created_at' =>NOW()
+            'created_at' =>NOW(),
+            'email_verified_at' =>NOW()
         ]);
 
         DB::table('users')->insert([
@@ -35,7 +36,8 @@ class SuperAdminTableSeeder extends Seeder
             'city' => 'Dharan',
             'phone' => 9810570523,
             'district' => 'Sunsari',
-            'created_at' =>NOW()
+            'created_at' =>NOW(),
+            'email_verified_at' =>NOW()
         ]);
 
         DB::table('users')->insert([
@@ -48,7 +50,8 @@ class SuperAdminTableSeeder extends Seeder
             'city' => 'Dharan',
             'phone' => 9810570523,
             'district' => 'Sunsari',
-            'created_at' =>NOW()
+            'created_at' =>NOW(),
+            'email_verified_at' =>NOW()
         ]);
 
 
