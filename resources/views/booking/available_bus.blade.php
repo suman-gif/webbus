@@ -89,12 +89,11 @@
     <script type="text/javascript">
 
         var travel_date = $('#travel_date').html();
+
         function load_seat_layout(bus)
         {
-            $('#modal-body').load('/get_seat_layout/'+bus);
+            $('#modal-body').load('/get_seat_layout/'+bus+'/'+travel_date.trim());
         }
-
-
 
         $('#seatLayout').on('hidden.bs.modal', function () {
             unload_seat_layout();

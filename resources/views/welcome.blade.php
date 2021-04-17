@@ -122,7 +122,7 @@
                         $('#travel_day').val(day_extract)
                     }
                 });
-                
+
 
                 function day_extract() {
                     var Bsdate = document.getElementById('nepali-datepicker').value;
@@ -132,6 +132,7 @@
                     var Addate = NepaliFunctions.BS2AD(fomated_Bsdate);
 
                     var AdDay = NepaliFunctions.GetAdFullDay(Addate);
+
 
                     return AdDay;
                 };

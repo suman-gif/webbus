@@ -15,13 +15,13 @@
 		<a href="{{ url('/') }}" class="btn btn-warning">Home</a>
 
 
-		
+
 
 	<div class="row">
-		
+
 
 		<div class="col-sm-8">
-		
+
 			<table class="table mt-5">
 			  <thead class="thead-light">
 			    <tr>
@@ -40,7 +40,7 @@
 			      <th scope="col">Username</th>
 			      <td>{{$profile->username}}</td>
 			    </tr>
-			  
+
 			    <tr>
 			      <th scope="col">E-Mail</th>
 			      <td>{{$profile->email}}</td>
@@ -60,7 +60,7 @@
 			    <tr>
 			      <th scope="col">Address</th>
 			      <td>{{$profile->address}}</td>
-			    </tr> 
+			    </tr>
 			    <tr>
 			      <th scope="col">Registered At</th>
 			      <td>{{ $profile->created_at->todatestring() }}</td>
@@ -70,7 +70,7 @@
 			      <td>
 						@if ( $profile->email_verified_at == NULL )
 							<strong>Email not verified -> </strong>
-							
+
 							<form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
 		                       	@csrf
 
@@ -83,18 +83,18 @@
 
 			      </td>
 			    </tr>
-			    
+
 			  </thead>
-			  
-			   
+
+
 			</table>
 		</div>
 
 
 		<div class="col-sm-4 mt-5">
-			<a href="profile/{{$profile->id}}/edit"><button class="btn btn-outline-info ">Edit Profile</button></a> <br>
-			<a href="profile/{{$profile->id}}/email"><button class="btn btn-outline-info ">Update Email</button></a>
-			<a href="profile/{{$profile->id}}/password"><button class="btn btn-outline-info ">Update Password</button></a> <br>
+			<a href="{{ url('profile')}}/{{$profile->id}}/edit"><button class="btn btn-outline-info ">Edit Profile</button></a> <br>
+			<a href="{{ url('profile')}}/{{$profile->id}}/email"><button class="btn btn-outline-info ">Update Email</button></a>
+			<a href="{{ url('profile')}}/{{$profile->id}}/password"><button class="btn btn-outline-info ">Update Password</button></a> <br>
 
 		</div>
 

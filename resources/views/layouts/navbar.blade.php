@@ -10,16 +10,16 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item"> 
+                        <li class="nav-item">
                             <a href="{{ url('/')}}" class="nav-link" >Home</a>
                         </li>
-                        <li class="nav-item"> 
+                        <li class="nav-item">
                             <a href="{{ url('/book-ticket')}}" class="nav-link" >Book ticket</a>
                         </li>
-                        <li class="nav-item"> 
+                        <li class="nav-item">
                             <a href="{{ url('/contact')}}" class="nav-link" >Contact us</a>
                         </li>
-                        
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -35,14 +35,20 @@
                                 </li>
                             @endif
                         @else
-                           
+                            <li class="nav-item mr-3">
+                                <a class="nav-link" href="{{ url('profile/reports') }}">
+                                    {{ __('My Transaction') }}
+                                </a>
+                            </li>
+
                             @if (Auth::user()->role->id == 2)
                                 <li class="nav-item mr-3">
                                   <a class="nav-link" href="{{ url('admin/busses') }}">
                                         {{ __('My Busses') }}
                                     </a>
                                 </li>
-                                    
+
+
                             @elseif (Auth::user()->role->id == 1)
                                 <li class="nav-item mr-3">
                                   <a class="nav-link" href="{{ url('superadmin/busses') }}">
@@ -55,10 +61,10 @@
                                         {{ __('All Users') }}
                                     </a>
                                 </li>
-                           
+
                             @endif
-                            
-            
+
+
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle bg-transparent" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -70,7 +76,7 @@
                                         {{ __('My Profile') }}
                                     </a>
 
-                                    
+
                                   <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

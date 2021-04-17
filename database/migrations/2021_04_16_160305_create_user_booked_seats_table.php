@@ -17,9 +17,15 @@ class CreateUserBookedSeatsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('bus_id');
             $table->unsignedBigInteger('user_id');
+            $table->text('seats_id');
             $table->text('seats_num');
             $table->date('booked_date');
+            $table->decimal('total_price', 5, 2);
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('bus_id')->references('id')->on('buses')->onDelete('cascade');
+
         });
     }
 

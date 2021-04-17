@@ -19,8 +19,14 @@ class Bus extends Model
         return $this->hasMany('App\Holiday');
     }
 
-    public function seat(){
-        return $this->hasMany('App\Seat');
+//    public function seat(){
+//        return $this->hasMany('App\Seat');
+//    }
+    public function userBookedseats(){
+        return $this->hasMany('App\UserBookedSeats');
+    }
+    public function busBookedSeats(){
+        return $this->hasMany('App\BusBookedSeats');
     }
 
 }

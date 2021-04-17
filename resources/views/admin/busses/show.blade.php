@@ -17,10 +17,10 @@
 		 <a href="{{ url('admin/holidays')}}/{{$bus->id}}" class="btn btn-danger"> See holidays </a>
 
 	<div class="row">
-		
+
 
 		<div class="col-sm-8">
-		
+
 			<table class="table mt-5">
 			  <thead class="thead-light">
 			    <tr>
@@ -58,15 +58,15 @@
 			    <tr>
 			      <th scope="col">Off Day</th>
 			      <td>{{$bus->off_day}}</td>
-			    </tr> 
+			    </tr>
 			    <tr>
 			      <th scope="col">Description</th>
 			      <td>{{$bus->description}}</td>
 			    </tr>
-			    
+
 			  </thead>
-			  
-			   
+
+
 			</table>
 		</div>
 
@@ -83,7 +83,7 @@
 				<button class="btn btn-outline-danger">Delete</button>
 			</form>
 
-			<p class="text-capitalize">Status: 
+			<p class="text-capitalize">Status:
 				@include('layouts.bus_status')
 			</p>
 
