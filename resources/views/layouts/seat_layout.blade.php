@@ -23,14 +23,24 @@
         <div id="legend"></div>
     </div>
 </div>
+<?php
 
+$arr=[];
+//echo ( $unav_seat->booked_seats_id ?? '' );
+if(empty($unav_seat)){
+//    echo "<p>Data does not exist</p>";
+}else{
+    $arr = explode(',', $unav_seat->booked_seats_id);
+    //print_r($arr);
+    }
+?>
 <script src="{{ asset('/assets/js/jquery.seat-charts.min.js') }}"></script>
 
 <script>
-   var selected_seats_id = [];
-   var selected_seats_num = [];
+    var selected_seats_id = [];
+    var selected_seats_num = [];
 
-   seatLayout();
+    seatLayout();
 
 
     function seatLayout() {
@@ -157,7 +167,6 @@
                         return 'available';
 
 
-
                     } else if (this.status() == 'unavailable') {
                         //seat has been already booked
                         return 'unavailable';
@@ -175,7 +184,17 @@
         });
 
         //let's pretend some seats have already been booked
-        var unav_seat = ['1_5', '4_1', '7_1', '7_2'];
+
+
+        var unav_seat = <?php echo json_encode($arr); ?>;
+
+       // alert(unav_seat);
+        $(unav_seat).each(function(entry, value) {
+            unav_seat[entry] = value.replace(/\s+/g, '');
+            console.log(unav_seat[entry]);
+        });
+        // var unav_seat = ['1_5', '4_1', '7_1', '7_2'];
+        // alert(unav_seat);
         sc.get(unav_seat).status('unavailable');
 
 
@@ -191,14 +210,18 @@
     }
 
 
-   function checkSeatEmpty() {
-        if(selected_seats_id.length==0){
+    function checkSeatEmpty() {
+        if (selected_seats_id.length == 0) {
             alert("Please select atleast one seat");
             return false;
 
-        }else{
-            var sorted_seat_num = selected_seats_num.sort(function(a, b){return a-b});
-            var sorted_seat_id = selected_seats_id.sort(function(a, b){return a-b});
+        } else {
+            var sorted_seat_num = selected_seats_num.sort(function (a, b) {
+                return a - b
+            });
+            var sorted_seat_id = selected_seats_id.sort(function (a, b) {
+                return a - b
+            });
 
             $('#selected_seats_id').val(sorted_seat_id.join(', '));
             $('#selected_seats_num').val(sorted_seat_num.join(', '));
@@ -207,5 +230,5 @@
             return true;
         }
 
-   }
+    }
 </script>

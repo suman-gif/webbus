@@ -38,10 +38,13 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     public function bus(){
-        return $this->hasMany('App\Bus');
+        return $this->belongsToMany('App\Bus');
     }
 
     public function role(){
         return $this->belongsTo('App\Role');
+    }
+    public function userBookedSeats(){
+        return $this->hasMany('App\UserBookedSeats');
     }
 }

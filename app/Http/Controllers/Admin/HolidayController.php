@@ -22,8 +22,10 @@ class HolidayController extends Controller
     }
 
 
-    public function show(Bus $bus)
+    public function show($bus)
     {
+        $bus = Bus::findOrFail($bus);
+
         if(Auth::id()==$bus->user_id){
             $holidays = Holiday::all()->where('bus_id',$bus->id);
             return view('admin.holidays.show',compact('holidays','bus'));
@@ -71,7 +73,7 @@ class HolidayController extends Controller
      * @param  \App\Holiday  $holiday
      * @return \Illuminate\Http\Response
      */
-   
+
 
     /**
      * Show the form for editing the specified resource.

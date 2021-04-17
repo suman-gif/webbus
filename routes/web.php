@@ -56,6 +56,7 @@ Route::group([ 'as'=>'admin.', 'prefix'=>'admin', 'namespace'=>'Admin', 'middlew
 			Route::get('/holidays/{bus}/create','HolidayController@create');
 			Route::post('/holidays','HolidayController@store')->name('holidays.store');
 
+			Route::post('/busses/report','BusBookedSeatsController@report')->name('bus.report');
 	}
 );
 
@@ -98,7 +99,7 @@ Route::patch('/email/{user}','ProfileController@update_email');
 
 Route::post('/available-bus','BusListController@index')->name('available_bus');
 Route::get('/available-bus', function() {
-    abort(404);
+    return redirect('/');
 });
 
 
@@ -106,11 +107,11 @@ Route::get('/available-bus', function() {
 //     return abort('404');
 // });
 
-Route::get('/get_seat_layout/{bus}','SeatController@partial_seat_layout');
+Route::get('/get_seat_layout/{bus}/{travel_date}','SeatController@partial_seat_layout');
 
 Route::post('/checkout', 'SeatController@checkout');
 Route::get('/checkout', function() {
-    abort(404);
+    return redirect('/');
 });
 Route::post('/payment', 'SeatController@paymentPost');
 
@@ -123,3 +124,7 @@ Route::get('/check-session', function () {
     if (Session::has('bus_checkout_info')) {
         dd("Checkout session set");
     }});
+
+
+Route::get('/profile/reports','UserBookedSeatsController@all_report')->name('user.all_report');
+Route::get('/profile/report/{id}','UserBookedSeatsController@report')->name('user.report');

@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Bus;
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 
 class BusController extends Controller
 {
@@ -20,7 +22,7 @@ class BusController extends Controller
         $this->middleware(['auth','verified']);
     }
 
-    
+
     public function index()
     {
         $user = Auth::id();
@@ -35,7 +37,7 @@ class BusController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {        
+    {
         return view('admin.busses.create');
     }
 
@@ -63,20 +65,20 @@ class BusController extends Controller
         $data['description'] = $request['description'];
 
         $data['off_day'] ='';
-        
-       
-        if ($request['off_day']) { 
+
+
+        if ($request['off_day']) {
             $holiday_count = 0;
-            
+
             foreach ($request['off_day'] as $off_day) {
                 $holiday_count++;
                 if( $holiday_count > 1 ){
-                    $data['off_day'] .= ', '; 
+                    $data['off_day'] .= ', ';
                 }
                 $data['off_day'] = $data['off_day'].$off_day;
             }
         }
-       
+
 
         //dd($data);
 
@@ -84,7 +86,7 @@ class BusController extends Controller
         // return redirect()->route('busses.index');
 
         $bus = Bus::create($data);
-        return redirect('admin/busses/'.$bus->id)->with('success_msg','Bus successfully added and is in review by the admin for approval..');
+        return redirect('admin/busses/'.Crypt::encrypt($bus->id))->with('success_msg','Bus successfully added and is in review by the admin for approval..');
     }
 
     /**
@@ -94,9 +96,16 @@ class BusController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($bus)
-    {   
-        //First way to get a row from sql      
-        $bus = Bus::findOrFail($bus);
+    {
+        //First way to get a row from sql
+
+        try {
+            $bus_id = Crypt::decrypt($bus);
+        } catch (DecryptException $e) {
+            return abort(404);
+        }
+
+        $bus = Bus::findOrFail($bus_id);
         //dd($bus);
         if(Auth::id()==$bus->user_id)
            return view('admin.busses.show',compact('bus'));
@@ -115,7 +124,7 @@ class BusController extends Controller
     {
         //Second way to get a row from sql
         return view('admin.busses.edit',compact('bus'));
-        
+
     }
 
     /**
@@ -143,19 +152,19 @@ class BusController extends Controller
 
         $data['off_day'] ='';
 
-        if ($request['off_day']) { 
+        if ($request['off_day']) {
             $holiday_count = 0;
-            
+
             foreach ($request['off_day'] as $off_day) {
                 $holiday_count++;
                 if( $holiday_count > 1 ){
-                    $data['off_day'] .= ', '; 
+                    $data['off_day'] .= ', ';
                 }
                 $data['off_day'] = $data['off_day'].$off_day;
             }
         }
 
-       
+
 
         $bus->update($data);
 

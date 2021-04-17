@@ -5,7 +5,7 @@
 @section('content')
 
 	<div class="container">
-		
+
 		<a href="{{  url()->previous()  }}" class="btn btn-warning">Back</a>
 		<a href="{{ url('admin/holidays/')}}/{{$bus->id}}/create" class="btn btn-info pull-right">Add New Holiday</a>
 
@@ -20,9 +20,9 @@
 		    </tr>
 		  </thead>
 		  <tbody>
-		  	
+
 			@forelse ($holidays as $holiday)
-		  		
+
 			    <tr>
 			     	<td> {{ $holiday->id }} </td>
 			     	<td> {{ $holiday->date_from }} </td>
@@ -34,7 +34,7 @@
 			    </tr>
 
 				@empty
-					<tr>	
+					<tr>
 						<td></td>
 						<td>
 							<h3 class="text-danger">No holiday found for {{ $bus->name }} !</h3>
@@ -42,7 +42,7 @@
 					</tr>
 
 			@endforelse
-		   
+
 		</table>
 	</div>
 
