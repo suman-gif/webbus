@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserBookedSeatsTable extends Migration
+class CreateCancellationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,17 @@ class CreateUserBookedSeatsTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_booked_seats', function (Blueprint $table) {
+        Schema::create('cancellations', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('bus_id');
             $table->unsignedBigInteger('user_id');
-            $table->text('seats_id');
-            $table->text('seats_num');
-            $table->date('booked_date');
-            $table->decimal('total_price', 5, 2);
-            $table->string('status')->default("Active"); //Active, Cancelled, Pending Cancellation
+            $table->unsignedBigInteger('report_id');
+            $table->text('reason');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('bus_id')->references('id')->on('buses')->onDelete('cascade');
+            $table->foreign('report_id')->references('id')->on('user_booked_seats')->onDelete('cascade');
 
         });
     }
@@ -37,6 +35,6 @@ class CreateUserBookedSeatsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_booked_seats');
+        Schema::dropIfExists('cancellations');
     }
 }

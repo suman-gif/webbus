@@ -47,4 +47,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function userBookedSeats(){
         return $this->hasMany('App\UserBookedSeats');
     }
+    public function cancellation(){
+        return $this->hasMany('App\Cancellation');
+    }
 }

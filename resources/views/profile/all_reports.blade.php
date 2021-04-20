@@ -14,6 +14,7 @@
                 <th scope="col">Seats Num</th>
                 <th scope="col">Total Price</th>
                 <th scope="col">Booked Date</th>
+                <th scope="col">Status</th>
             </tr>
             </thead>
             <tbody>
@@ -34,6 +35,7 @@
                     <td> {{$report->seats_num}} </td>
                     <td> {{$report->total_price}} </td>
                     <td> {{$report->booked_date}} </td>
+                    <td class="font-weight-bold"> {{$report->status}} </td>
 
 
 

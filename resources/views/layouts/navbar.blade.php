@@ -43,6 +43,12 @@
 
                             @if (Auth::user()->role->id == 2)
                                 <li class="nav-item mr-3">
+                                    <a class="nav-link" href="{{ url('admin/cancellation') }}">
+                                        {{ __('Cancellation Request') }}
+                                    </a>
+                                </li>
+
+                                <li class="nav-item mr-3">
                                   <a class="nav-link" href="{{ url('admin/busses') }}">
                                         {{ __('My Busses') }}
                                     </a>

@@ -29,4 +29,8 @@ class Bus extends Model
         return $this->hasMany('App\BusBookedSeats');
     }
 
+    public function cancellation(){
+        return $this->hasMany('App\Cancellation');
+    }
+
 }

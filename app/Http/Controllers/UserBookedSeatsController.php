@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\BusBookedSeats;
+use App\Cancellation;
 use App\UserBookedSeats;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Http\Request;
@@ -34,79 +36,50 @@ class UserBookedSeatsController extends Controller
         else
             abort(404);
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+    public function reportCancel(Request $request)
     {
-        //
+        $user_ticket = UserBookedSeats::findOrFail($request['report_id']);
+        $user_ticket->status = "Pending Cancellation";
+        //dd($user_ticket['seats_num']);
+//        $booked_bus = BusBookedSeats::where([
+//            'booked_date'=> $user_ticket->bus_id,
+//            'booked_date' => $user_ticket['booked_date'],
+//        ])->first();
+//
+//        $bus_booked_seats_num = explode(', ', $booked_bus['booked_seats_num']);
+//        $user_booked_seats_num = explode(', ', $user_ticket['seats_num']);
+//
+//        $updated_bus_seat_num = array_diff($bus_booked_seats_num, $user_booked_seats_num);
+//        //print_r($updated_bus_seat_num);
+//
+//        $bus_booked_seats_id = explode(', ', $booked_bus['booked_seats_id']);
+//        $user_booked_seats_id = explode(', ', $user_ticket['seats_id']);
+//
+//        $updated_bus_seat_id=array_diff($bus_booked_seats_id, $user_booked_seats_id);
+//        //print_r($updated_bus_seat_id);
+//
+//
+//        $booked_bus->booked_seats_num = implode(', ', $updated_bus_seat_num);
+//        $booked_bus->booked_seats_id = implode(', ', $updated_bus_seat_id);
+//
+//        //dd($booked_bus);
+
+        //$booked_bus->update();
+
+        $cancel_request = new Cancellation();
+
+        $cancel_request->bus_id = $user_ticket->bus_id;
+        $cancel_request->user_id = $user_ticket->user_id;
+        $cancel_request->report_id = $user_ticket->id;
+        $cancel_request->reason = $request['reason'];
+
+        $user_ticket->update();
+        $cancel_request->save();
+
+        return redirect('profile/report/'.Crypt::encrypt($user_ticket->id))->with('success_msg','Seat cancellation request submitted.');
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\UserBookedSeats  $userBookedSeats
-     * @return \Illuminate\Http\Response
-     */
-    public function show(UserBookedSeats $userBookedSeats)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\UserBookedSeats  $userBookedSeats
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(UserBookedSeats $userBookedSeats)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\UserBookedSeats  $userBookedSeats
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, UserBookedSeats $userBookedSeats)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\UserBookedSeats  $userBookedSeats
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(UserBookedSeats $userBookedSeats)
-    {
-        //
-    }
 }
