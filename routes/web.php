@@ -57,12 +57,17 @@ Route::group([ 'as'=>'admin.', 'prefix'=>'admin', 'namespace'=>'Admin', 'middlew
 			Route::post('/holidays','HolidayController@store')->name('holidays.store');
 
 			Route::post('/busses/report','BusBookedSeatsController@report')->name('bus.report');
+            Route::get('/cancellation/', 'CancellationController@index');
+            Route::get('/cancellation/{id}', 'CancellationController@show');
+            Route::get('/cancellation/{id}/accept', 'CancellationController@accept');
+            Route::get('/cancellation/{id}/reject', 'CancellationController@reject');
 	}
 );
 
 
 Route::group([ 'as'=>'superadmin.', 'prefix'=>'superadmin', 'namespace'=>'SuperAdmin', 'middleware'=>['auth','superadmin'] ],
 	function(){
+
 
 			Route::get('/busses', 'BusController@index')->name('busses.index');
 			Route::get('/busses/{bus}','BusController@show');
@@ -128,3 +133,4 @@ Route::get('/check-session', function () {
 
 Route::get('/profile/reports','UserBookedSeatsController@all_report')->name('user.all_report');
 Route::get('/profile/report/{id}','UserBookedSeatsController@report')->name('user.report');
+Route::post('/profile/report/cancel','UserBookedSeatsController@reportCancel')->name('user.report.cancel');

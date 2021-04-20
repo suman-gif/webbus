@@ -12,7 +12,7 @@
 
         @endif
 
-        <a href="{{ url('/profile/reports') }}" class="btn btn-warning">All Transaction</a>
+        <a href="{{ url('/profile/reports') }}" class="btn btn-primary">All Transaction</a>
 
         <div class="row">
 
@@ -57,27 +57,41 @@
 
             <div class="col-sm-4 mt-5">
 
+            @if  ($report->status=="Active")
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModal">
                     Request Cancel/Refund
                 </button>
+                @endif
+                <div class="m-2">
+                    <p>Status: <span class="font-weight-bold"> {{ $report->status }} </span></p>
+                </div>
 
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Booking Cancellation Request Form</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                Refund....
+                                <form action="{{ route('user.report.cancel') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="report_id" value="{{ $report->id }}">
+
+                                    <label for="reason">{{ __('Reason') }}<span
+                                            class="required">*</span></label>
+                                    <textarea id="reason" type="text"
+                                           class="form-control" name="reason" required autofocus cols="15" rows="5"></textarea>
+
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                </form>
                             </div>
                         </div>
                     </div>
