@@ -12,12 +12,13 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
+
         //Role id for superadmin will be 1
         DB::table('roles')->insert([
         	'name' => 'Super Admin',
         	'slug' => 'su',
             'created_at' =>NOW()
-        ]); 
+        ]);
 
 
         //Role id for admin will be 2
