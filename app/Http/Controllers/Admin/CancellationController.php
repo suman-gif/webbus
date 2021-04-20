@@ -71,9 +71,15 @@ class CancellationController extends Controller
         $booked_bus->booked_seats_num = implode(', ', $updated_bus_seat_num);
         $booked_bus->booked_seats_id = implode(', ', $updated_bus_seat_id);
 
-        //dd($booked_bus);
 
-        $booked_bus->update();
+
+        //dd($booked_bus['booked_seats_num']);
+
+        if($booked_bus['booked_seats_num']==null){
+            $booked_bus->delete();
+        }else{
+            $booked_bus->update();
+        }
         $user_ticket->update();
 
         return redirect('admin/cancellation');
